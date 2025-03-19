@@ -1,0 +1,16 @@
+service: rag-pdf
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+
+functions:
+  api:
+    handler: handler.handler
+    environment:
+      OPENAI_API_KEY: ${env:OPENAI_API_KEY}
+      WEAVIATE_SCHEME: ${env:WEAVIATE_SCHEME}
+      WEAVIATE_HOST: ${env:WEAVIATE_HOST}
+      WEAVIATE_API_KEY: ${env:WEAVIATE_API_KEY}
+    events:
+      - httpApi: "*"
